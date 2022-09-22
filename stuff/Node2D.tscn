@@ -1,0 +1,930 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://stuff/rotate.png" type="Texture" id=1]
+[ext_resource path="res://j/NOTE_assets.arrowDOWN0000.atlastex" type="Texture" id=2]
+[ext_resource path="res://j/NOTE_assets.arrowUP0000.atlastex" type="Texture" id=3]
+[ext_resource path="res://j/NOTE_assets.arrowRIGHT0000.atlastex" type="Texture" id=4]
+[ext_resource path="res://j/NOTE_assets.arrowLEFT0000.atlastex" type="Texture" id=5]
+[ext_resource path="res://stuff/g.gd" type="Script" id=6]
+[ext_resource path="res://stuff/he.gd" type="Script" id=7]
+[ext_resource path="res://stuff/OptionButton.gd" type="Script" id=8]
+[ext_resource path="res://stuff/dirrotate.gd" type="Script" id=9]
+[ext_resource path="res://stuff/rotate.gd" type="Script" id=10]
+[ext_resource path="res://stuff/HScrollBar.gd" type="Script" id=11]
+[ext_resource path="res://stuff/ScrollContainer.gd" type="Script" id=12]
+[ext_resource path="res://stuff/FileDialog.gd" type="Script" id=13]
+[ext_resource path="res://stuff/h.gd" type="Script" id=14]
+[ext_resource path="res://stuff/dirrotate.png" type="Texture" id=16]
+[ext_resource path="res://stuff/Control.gd" type="Script" id=17]
+[ext_resource path="res://stuff/keyframe.gd" type="Script" id=18]
+[ext_resource path="res://stuff/Line2D.gd" type="Script" id=19]
+[ext_resource path="res://stuff/MarginContainer.gd" type="Script" id=20]
+[ext_resource path="res://stuff/Node2D.gd" type="Script" id=21]
+[ext_resource path="res://stuff/Button.gd" type="Script" id=22]
+[ext_resource path="res://stuff/note7.gd" type="Script" id=23]
+[ext_resource path="res://stuff/note8.gd" type="Script" id=24]
+[ext_resource path="res://stuff/note1.gd" type="Script" id=25]
+[ext_resource path="res://stuff/note3.gd" type="Script" id=26]
+[ext_resource path="res://stuff/note5.gd" type="Script" id=27]
+[ext_resource path="res://stuff/note2.gd" type="Script" id=28]
+[ext_resource path="res://stuff/note4.gd" type="Script" id=29]
+[ext_resource path="res://stuff/note6.gd" type="Script" id=30]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.89951, 9.89951 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="Theme" id=8]
+VScrollBar/styles/grabber = SubResource( 3 )
+VScrollBar/styles/grabber_highlight = SubResource( 4 )
+VScrollBar/styles/grabber_pressed = SubResource( 5 )
+VScrollBar/styles/scroll = SubResource( 6 )
+VScrollBar/styles/scroll_focus = SubResource( 7 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 20 )
+
+[node name="BG" type="ColorRect" parent="."]
+margin_left = 150.0
+margin_top = 408.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.145098, 0.145098, 0.164706, 1 )
+
+[node name="separator" type="ColorRect" parent="BG"]
+margin_left = -1174.0
+margin_top = 310.0
+margin_right = -6.0
+margin_bottom = 312.0
+color = Color( 0.25098, 0.243137, 0.282353, 1 )
+
+[node name="BG2" type="ColorRect" parent="BG"]
+margin_left = -150.0
+margin_bottom = 192.0
+theme = SubResource( 1 )
+color = Color( 0.25098, 0.243137, 0.282353, 1 )
+
+[node name="timeline" type="ColorRect" parent="BG/BG2"]
+show_behind_parent = true
+margin_left = 150.0
+margin_right = 151.0
+margin_bottom = 192.0
+
+[node name="beatline" type="Line2D" parent="BG"]
+points = PoolVector2Array( 0, 0, 0, 192, 0, 0, 0, 0 )
+width = 4.0
+default_color = Color( 0.25098, 0.243137, 0.282353, 1 )
+
+[node name="stepline" type="Line2D" parent="BG"]
+points = PoolVector2Array( 0, 0, 0, 192 )
+width = 1.0
+default_color = Color( 0.25098, 0.243137, 0.282353, 1 )
+
+[node name="keyframe" type="Polygon2D" parent="BG"]
+position = Vector2( -238, -72 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 20
+offset = Vector2( 0, 11 )
+polygon = PoolVector2Array( 0, 0, -15, 15, 0, 30, 15, 15 )
+script = ExtResource( 18 )
+
+[node name="hold" type="Polygon2D" parent="BG/keyframe"]
+z_index = -1
+color = Color( 1, 1, 1, 0.196078 )
+offset = Vector2( 0, 8 )
+polygon = PoolVector2Array( 0, 12, 2, 12, 2, 24, 0, 24 )
+
+[node name="Button" type="Button" parent="BG/keyframe"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = -16.0
+margin_top = 10.0
+margin_right = 16.0
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 22 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="BG/keyframe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG/keyframe/KinematicBody2D"]
+position = Vector2( -1.52588e-05, 26 )
+rotation = 0.785398
+shape = SubResource( 2 )
+
+[node name="holdbutton" type="Button" parent="BG/keyframe"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 5.0
+margin_right = 40.0
+margin_bottom = 45.0
+focus_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+enabled_focus_mode = 0
+script = ExtResource( 6 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 150.0
+margin_top = 408.0
+margin_right = 1024.0
+margin_bottom = 622.0
+theme = SubResource( 8 )
+scroll_vertical_enabled = false
+scroll_deadzone = 1
+script = ExtResource( 12 )
+
+[node name="MarginContainer" type="Control" parent="ScrollContainer"]
+margin_right = 1000.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 1000, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 17 )
+
+[node name="note1" type="TextureButton" parent="."]
+margin_left = 30.95
+margin_top = -2.05
+margin_right = 185.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 5 )
+script = ExtResource( 25 )
+
+[node name="dir" type="Line2D" parent="note1"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note1"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note1"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note1"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note1"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note1"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="tween1" type="Tween" parent="."]
+
+[node name="tween2" type="Tween" parent="."]
+
+[node name="tween3" type="Tween" parent="."]
+
+[node name="tween4" type="Tween" parent="."]
+
+[node name="tween5" type="Tween" parent="."]
+
+[node name="tween6" type="Tween" parent="."]
+
+[node name="tween7" type="Tween" parent="."]
+
+[node name="tween8" type="Tween" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 21 )
+
+[node name="note4" type="TextureButton" parent="."]
+margin_left = 198.95
+margin_top = -2.05
+margin_right = 353.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 4 )
+script = ExtResource( 29 )
+
+[node name="dir" type="Line2D" parent="note4"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note4"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note4"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note4"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note4"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note4"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="note2" type="TextureButton" parent="."]
+margin_left = 86.95
+margin_top = -2.05
+margin_right = 243.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 2 )
+script = ExtResource( 28 )
+
+[node name="dir" type="Line2D" parent="note2"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note2"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note2"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note2"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note2"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note2"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="note3" type="TextureButton" parent="."]
+margin_left = 142.95
+margin_top = -2.05
+margin_right = 299.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 3 )
+script = ExtResource( 26 )
+
+[node name="dir" type="Line2D" parent="note3"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note3"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note3"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note3"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note3"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note3"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="note5" type="TextureButton" parent="."]
+margin_left = 340.95
+margin_top = -2.05
+margin_right = 495.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 5 )
+script = ExtResource( 27 )
+
+[node name="dir" type="Line2D" parent="note5"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note5"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note5"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note5"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note5"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note5"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="note6" type="TextureButton" parent="."]
+margin_left = 396.95
+margin_top = -2.05
+margin_right = 553.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 2 )
+script = ExtResource( 30 )
+
+[node name="dir" type="Line2D" parent="note6"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note6"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note6"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note6"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note6"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note6"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="note7" type="TextureButton" parent="."]
+margin_left = 452.95
+margin_top = -2.05
+margin_right = 609.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 3 )
+script = ExtResource( 23 )
+
+[node name="dir" type="Line2D" parent="note7"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note7"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note7"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note7"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note7"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note7"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="note8" type="TextureButton" parent="."]
+margin_left = 508.95
+margin_top = -2.05
+margin_right = 665.95
+margin_bottom = 155.95
+rect_scale = Vector2( 0.35, 0.35 )
+rect_pivot_offset = Vector2( 77, 77 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 4 )
+script = ExtResource( 24 )
+
+[node name="dir" type="Line2D" parent="note8"]
+position = Vector2( 77.5, 77.5 )
+z_index = -15
+points = PoolVector2Array( 0, 0, 0, 2000 )
+default_color = Color( 1, 1, 1, 0.388235 )
+script = ExtResource( 19 )
+
+[node name="rotate" type="TextureButton" parent="note8"]
+margin_left = 114.286
+margin_right = 154.286
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="dirrotate" type="TextureButton" parent="note8"]
+margin_top = 117.143
+margin_right = 40.0
+margin_bottom = 157.143
+focus_mode = 0
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 16 )
+script = ExtResource( 9 )
+
+[node name="notedir" type="Node2D" parent="note8"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="direction" type="Node2D" parent="note8"]
+position = Vector2( 77.5, 77.5 )
+
+[node name="HScrollBar" type="HScrollBar" parent="note8"]
+margin_top = -18.5715
+margin_right = 154.0
+margin_bottom = -0.57148
+rect_pivot_offset = Vector2( 77.143, 107.143 )
+value = 100.0
+script = ExtResource( 11 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 712.0
+margin_right = 1024.0
+margin_bottom = 408.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+margin_right = 312.0
+margin_bottom = 408.0
+
+[node name="Values" type="Panel" parent="Panel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="X" type="RichTextLabel" parent="Panel/TabContainer/Values"]
+margin_right = 23.0
+margin_bottom = 40.0
+rect_clip_content = false
+text = "
+X:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/TabContainer/Values/X"]
+margin_left = 70.0
+margin_top = 6.0
+margin_right = 295.0
+margin_bottom = 30.0
+focus_mode = 1
+
+[node name="Y" type="RichTextLabel" parent="Panel/TabContainer/Values"]
+margin_top = 40.0
+margin_right = 23.0
+margin_bottom = 80.0
+rect_clip_content = false
+text = "
+Y:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/TabContainer/Values/Y"]
+margin_left = 70.0
+margin_top = 6.0
+margin_right = 295.0
+margin_bottom = 30.0
+focus_mode = 1
+
+[node name="Angle" type="RichTextLabel" parent="Panel/TabContainer/Values"]
+margin_top = 80.0
+margin_right = 56.0
+margin_bottom = 120.0
+rect_clip_content = false
+text = "
+Angle:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/TabContainer/Values/Angle"]
+margin_left = 70.0
+margin_top = 6.0
+margin_right = 295.0
+margin_bottom = 30.0
+focus_mode = 1
+
+[node name="Direction" type="RichTextLabel" parent="Panel/TabContainer/Values"]
+margin_top = 120.0
+margin_right = 88.0
+margin_bottom = 160.0
+rect_clip_content = false
+text = "
+Direction:"
+fit_content_height = true
+
+[node name="LineEdit" type="LineEdit" parent="Panel/TabContainer/Values/Direction"]
+margin_left = 70.0
+margin_top = 6.0
+margin_right = 295.0
+margin_bottom = 30.0
+focus_mode = 1
+
+[node name="Alpha" type="RichTextLabel" parent="Panel/TabContainer/Values"]
+margin_top = 160.0
+margin_right = 88.0
+margin_bottom = 205.0
+rect_clip_content = false
+text = "
+Alpha:"
+fit_content_height = true
+
+[node name="LineEdit" type="LineEdit" parent="Panel/TabContainer/Values/Alpha"]
+margin_left = 70.0
+margin_top = 6.0
+margin_right = 295.0
+margin_bottom = 30.0
+focus_mode = 1
+
+[node name="Tween" type="RichTextLabel" parent="Panel/TabContainer/Values"]
+margin_top = 200.0
+margin_right = 88.0
+margin_bottom = 245.0
+rect_clip_content = false
+text = "
+Transition:"
+fit_content_height = true
+
+[node name="OptionButton" type="OptionButton" parent="Panel/TabContainer/Values/Tween"]
+margin_left = 70.0
+margin_top = 10.0
+margin_right = 302.0
+margin_bottom = 30.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Tween"
+script = ExtResource( 7 )
+
+[node name="Type" type="RichTextLabel" parent="Panel/TabContainer/Values"]
+margin_top = 240.0
+margin_right = 88.0
+margin_bottom = 285.0
+rect_clip_content = false
+text = "
+Type:"
+fit_content_height = true
+
+[node name="OptionButton" type="OptionButton" parent="Panel/TabContainer/Values/Type"]
+margin_left = 70.0
+margin_top = 10.0
+margin_right = 302.0
+margin_bottom = 30.0
+focus_mode = 0
+enabled_focus_mode = 0
+script = ExtResource( 8 )
+
+[node name="Export" type="Panel" parent="Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Button" type="Button" parent="Panel/TabContainer/Export"]
+margin_right = 304.0
+margin_bottom = 43.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Save as lua"
+
+[node name="FileDialog2" type="FileDialog" parent="Panel/TabContainer/Export/Button"]
+margin_left = -152.0
+margin_top = 119.0
+margin_right = 309.0
+margin_bottom = 375.0
+access = 2
+script = ExtResource( 13 )
+
+[node name="Save or load" type="Panel" parent="Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Save" type="Button" parent="Panel/TabContainer/Save or load"]
+margin_top = 10.0
+margin_right = 304.0
+margin_bottom = 50.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Save"
+
+[node name="FileDialog" type="FileDialog" parent="Panel/TabContainer/Save or load/Save"]
+margin_left = -152.0
+margin_top = 109.0
+margin_right = 309.0
+margin_bottom = 365.0
+access = 2
+script = ExtResource( 14 )
+
+[node name="Open" type="Button" parent="Panel/TabContainer/Save or load"]
+margin_top = 60.0
+margin_right = 304.0
+margin_bottom = 100.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Open Modchart"
+
+[node name="FileDialog" type="FileDialog" parent="Panel/TabContainer/Save or load/Open"]
+margin_left = -152.0
+margin_top = 60.0
+margin_right = 309.0
+margin_bottom = 315.0
+window_title = "Open a File"
+mode = 0
+access = 2
+script = ExtResource( 14 )
+
+[node name="Popup" type="Popup" parent="."]
+margin_left = 419.0
+margin_top = 223.0
+margin_right = 459.0
+margin_bottom = 263.0
+popup_exclusive = true
+
+[node name="Panel" type="Panel" parent="Popup"]
+margin_left = -91.0
+margin_top = 6.0
+margin_right = 27.0
+margin_bottom = 46.0
+
+[node name="LineEdit" type="LineEdit" parent="Popup/Panel"]
+margin_left = 47.0
+margin_top = 8.0
+margin_right = 105.0
+margin_bottom = 32.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup/Panel"]
+margin_left = 4.0
+margin_top = 6.0
+margin_right = 69.0
+margin_bottom = 46.0
+text = "Enter
+Bpm:"
+
+[node name="killme" type="Popup" parent="."]
+visible = true
+margin_top = -11.0
+margin_right = 163.0
+margin_bottom = 35.0
+rect_clip_content = true
+popup_exclusive = true
+
+[node name="Panel" type="Panel" parent="killme"]
+margin_right = 194.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="killme/Panel"]
+margin_right = 163.0
+margin_bottom = 46.0
+text = "Drag and drop OGG audio file onto this screen."
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 0, -14 )
+points = PoolVector2Array( 66.3, 52.5, 625, 52.5, 625, 408.2, 66.3, 408.2, 66.3, 52.5 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[connection signal="button_down" from="BG/keyframe/Button" to="BG/keyframe" method="_on_Button_button_down"]
+[connection signal="button_down" from="BG/keyframe/Button" to="BG/keyframe/Button" method="_on_Button_button_down"]
+[connection signal="button_up" from="BG/keyframe/Button" to="BG/keyframe" method="_on_Button_button_up"]
+[connection signal="button_up" from="BG/keyframe/Button" to="BG/keyframe/Button" method="_on_Button_button_up"]
+[connection signal="button_down" from="BG/keyframe/holdbutton" to="BG/keyframe/holdbutton" method="_on_holdbutton_button_down"]
+[connection signal="button_up" from="BG/keyframe/holdbutton" to="BG/keyframe/holdbutton" method="_on_holdbutton_button_up"]
+[connection signal="button_down" from="note1" to="note1" method="_on_note1_button_down"]
+[connection signal="button_up" from="note1" to="note1" method="_on_note1_button_up"]
+[connection signal="button_down" from="note1/rotate" to="note1/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note1/rotate" to="note1/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note1/dirrotate" to="note1/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note1/dirrotate" to="note1/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note1/HScrollBar" to="note1/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="button_down" from="note4" to="note4" method="_on_note4_button_down"]
+[connection signal="button_up" from="note4" to="note4" method="_on_note4_button_up"]
+[connection signal="button_down" from="note4/rotate" to="note4/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note4/rotate" to="note4/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note4/dirrotate" to="note4/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note4/dirrotate" to="note4/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note4/HScrollBar" to="note4/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="button_down" from="note2" to="note2" method="_on_note2_button_down"]
+[connection signal="button_up" from="note2" to="note2" method="_on_note2_button_up"]
+[connection signal="button_down" from="note2/rotate" to="note2/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note2/rotate" to="note2/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note2/dirrotate" to="note2/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note2/dirrotate" to="note2/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note2/HScrollBar" to="note2/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="button_down" from="note3" to="note3" method="_on_note3_button_down"]
+[connection signal="button_up" from="note3" to="note3" method="_on_note3_button_up"]
+[connection signal="button_down" from="note3/rotate" to="note3/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note3/rotate" to="note3/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note3/dirrotate" to="note3/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note3/dirrotate" to="note3/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note3/HScrollBar" to="note3/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="button_down" from="note5" to="note5" method="_on_note5_button_down"]
+[connection signal="button_up" from="note5" to="note5" method="_on_note5_button_up"]
+[connection signal="button_down" from="note5/rotate" to="note5/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note5/rotate" to="note5/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note5/dirrotate" to="note5/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note5/dirrotate" to="note5/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note5/HScrollBar" to="note5/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="button_down" from="note6" to="note6" method="_on_note6_button_down"]
+[connection signal="button_up" from="note6" to="note6" method="_on_note6_button_up"]
+[connection signal="button_down" from="note6/rotate" to="note6/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note6/rotate" to="note6/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note6/dirrotate" to="note6/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note6/dirrotate" to="note6/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note6/HScrollBar" to="note6/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="button_down" from="note7" to="note7" method="_on_note7_button_down"]
+[connection signal="button_up" from="note7" to="note7" method="_on_note7_button_up"]
+[connection signal="button_down" from="note7/rotate" to="note7/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note7/rotate" to="note7/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note7/dirrotate" to="note7/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note7/dirrotate" to="note7/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note7/HScrollBar" to="note7/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="button_down" from="note8" to="note8" method="_on_note8_button_down"]
+[connection signal="button_up" from="note8" to="note8" method="_on_note8_button_up"]
+[connection signal="button_down" from="note8/rotate" to="note8/rotate" method="_on_rotate_button_down"]
+[connection signal="button_up" from="note8/rotate" to="note8/rotate" method="_on_rotate_button_up"]
+[connection signal="button_down" from="note8/dirrotate" to="note8/dirrotate" method="_on_dirrotate_button_down"]
+[connection signal="button_up" from="note8/dirrotate" to="note8/dirrotate" method="_on_dirrotate_button_up"]
+[connection signal="value_changed" from="note8/HScrollBar" to="note8/HScrollBar" method="_on_HScrollBar_value_changed"]
+[connection signal="text_changed" from="Panel/TabContainer/Values/X/LineEdit" to="." method="_on_X_text_changed"]
+[connection signal="text_entered" from="Panel/TabContainer/Values/X/LineEdit" to="." method="_on_X_text_entered"]
+[connection signal="text_changed" from="Panel/TabContainer/Values/Y/LineEdit" to="." method="_on_Y_text_changed"]
+[connection signal="text_entered" from="Panel/TabContainer/Values/Y/LineEdit" to="." method="_on_Y_text_entered"]
+[connection signal="text_changed" from="Panel/TabContainer/Values/Angle/LineEdit" to="." method="_on_Angle_text_changed"]
+[connection signal="text_entered" from="Panel/TabContainer/Values/Angle/LineEdit" to="." method="_on_Angle_text_entered"]
+[connection signal="text_changed" from="Panel/TabContainer/Values/Direction/LineEdit" to="." method="_on_dir_text_changed"]
+[connection signal="text_entered" from="Panel/TabContainer/Values/Direction/LineEdit" to="." method="_on_dir_text_entered"]
+[connection signal="text_changed" from="Panel/TabContainer/Values/Alpha/LineEdit" to="." method="_on_alpha_text_changed"]
+[connection signal="text_entered" from="Panel/TabContainer/Values/Alpha/LineEdit" to="." method="_on_alpha_text_entered"]
+[connection signal="item_selected" from="Panel/TabContainer/Values/Tween/OptionButton" to="." method="_on_tween_item_selected"]
+[connection signal="item_selected" from="Panel/TabContainer/Values/Type/OptionButton" to="." method="_on_type_item_selected"]
+[connection signal="button_up" from="Panel/TabContainer/Export/Button" to="." method="_on_lua_button_up"]
+[connection signal="file_selected" from="Panel/TabContainer/Export/Button/FileDialog2" to="." method="_on_lua_file_selected"]
+[connection signal="button_up" from="Panel/TabContainer/Save or load/Save" to="." method="_on_Button_button_up"]
+[connection signal="file_selected" from="Panel/TabContainer/Save or load/Save/FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="button_up" from="Panel/TabContainer/Save or load/Open" to="." method="_on_Open_button_up"]
+[connection signal="file_selected" from="Panel/TabContainer/Save or load/Open/FileDialog" to="." method="_on_FileDialog2_file_selected"]
+[connection signal="text_entered" from="Popup/Panel/LineEdit" to="." method="_on_bpm_text_entered"]

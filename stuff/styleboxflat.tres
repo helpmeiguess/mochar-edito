@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxFlat" format=2]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "he"
+bg_color = Color( 1, 1, 1, 1 )
