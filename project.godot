@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Modchart Editor"
+config/name="MCEditor.Lua v0.1"
 run/main_scene="res://stuff/Node2D.tscn"
 config/icon="res://Icon.png"
 
