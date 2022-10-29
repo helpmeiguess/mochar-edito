@@ -692,9 +692,10 @@ margin_bottom = 30.0
 focus_mode = 1
 
 [node name="Tween" type="RichTextLabel" parent="Panel/TabContainer/Values"]
-margin_top = 200.0
-margin_right = 88.0
-margin_bottom = 245.0
+margin_left = -1.0
+margin_top = 227.0
+margin_right = 87.0
+margin_bottom = 272.0
 rect_clip_content = false
 text = "
 Transition:"
@@ -711,9 +712,10 @@ text = "Tween"
 script = ExtResource( 7 )
 
 [node name="Type" type="RichTextLabel" parent="Panel/TabContainer/Values"]
-margin_top = 240.0
-margin_right = 88.0
-margin_bottom = 285.0
+margin_left = 1.0
+margin_top = 191.0
+margin_right = 89.0
+margin_bottom = 236.0
 rect_clip_content = false
 text = "
 Type:"
@@ -749,6 +751,7 @@ margin_left = -152.0
 margin_top = 119.0
 margin_right = 309.0
 margin_bottom = 375.0
+window_title = "Salvar um Arquivo"
 access = 2
 script = ExtResource( 13 )
 
@@ -774,6 +777,7 @@ margin_left = -152.0
 margin_top = 109.0
 margin_right = 309.0
 margin_bottom = 365.0
+window_title = "Salvar um Arquivo"
 access = 2
 script = ExtResource( 14 )
 
