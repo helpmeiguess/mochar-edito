@@ -15,6 +15,7 @@ func _ready():
 	add_item('Circ', 8)
 	add_item('Cube', 7)
 	add_item('Quint', 6)
+	add_item('Elastic', 5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
