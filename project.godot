@@ -12,11 +12,13 @@ config_version=4
 
 config/name="Modchart Editor"
 run/main_scene="res://stuff/Node2D.tscn"
-config/icon="res://stuff/icon.png"
+config/icon="res://Icon.png"
 
 [display]
 
 window/size/resizable=false
+mouse_cursor/custom_image="res://ArrowCursor.png"
+mouse_cursor/custom_image_hotspot=Vector2( 30, 30 )
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

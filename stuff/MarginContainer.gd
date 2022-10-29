@@ -54,7 +54,7 @@ func get_tween_str(i):
 		return "Out"
 	if i == Tween.EASE_IN_OUT:
 		return "InOut"
-	if i == Tween.EASE_OUT_IN
+	if i == Tween.EASE_OUT_IN:
 		return "OutIn"
 	
 func get_tween(note):
