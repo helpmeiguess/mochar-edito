@@ -26,8 +26,8 @@ var theballs = false
 var ogpos:Vector2
 var time = 0
 var cool = 0.0
-var transitions = [Tween.EASE_IN_OUT,Tween.EASE_IN,Tween.EASE_OUT]
-var types = [1,0,9,10,8,7]
+var transitions = [Tween.EASE_IN_OUT,Tween.EASE_IN,Tween.EASE_OUT,Tween.EASE_OUT_IN]
+var types = [1,0,9,10,8,7,6]
 var coolaudiostream = AudioStreamOGGVorbis.new()
 func indexof(array, find):
 	var i = array.find(find)
@@ -45,6 +45,8 @@ func get_str(i, twn):
 		return "circ" + get_tween_str(twn)
 	if i == 7:
 		return "cubic" + get_tween_str(twn)
+	if i == 6:
+		return "quint" + get_tween_str(twn)
 func get_tween_str(i):
 	if i == Tween.EASE_IN:
 		return "In"
@@ -52,7 +54,9 @@ func get_tween_str(i):
 		return "Out"
 	if i == Tween.EASE_IN_OUT:
 		return "InOut"
-		
+	if i == Tween.EASE_OUT_IN
+		return "OutIn"
+	
 func get_tween(note):
 	return get_node('tween' + str(note))
 func _ready():

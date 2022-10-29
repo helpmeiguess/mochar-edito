@@ -12,8 +12,9 @@ func _ready():
 	add_item('Linear', 0)
 	add_item('Bounce', 9)
 	add_item('Back', 10)
-	add_item('Circ because someone begged for it', 8)
-	add_item('Cube because someone begged for it', 7)
+	add_item('Circ', 8)
+	add_item('Cube', 7)
+	add_item('Quint', 6)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
